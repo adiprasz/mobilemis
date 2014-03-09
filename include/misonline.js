@@ -190,7 +190,7 @@ function absen() {
 
 
                     for (var w = 0; w < json.absen.length; w++) {
-                        hitung = hitung + 2;
+                        
 
                     }
                 }
