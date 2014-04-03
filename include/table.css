@@ -2,7 +2,17 @@
  styling for the tables 
    ------------------   */
 
-
+  
+            div.mdgov_OverflowTable {
+    width: 100%;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+}
+div.mdgov_OverflowTable table {
+    width: 100%;
+    white-space: nowrap; /* Optional */
+}
+       
 body
 {
 	line-height: 1.6em;
@@ -100,7 +110,7 @@ body
 	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
 	font-size: 12px;
 	margin: 45px;
-	width: 75%%;
+	width: 75%;
 	text-align: left;
 	border-collapse: collapse;
 }

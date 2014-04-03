@@ -3,6 +3,7 @@
  * and open the template in the editor.
  */
 
+
 var nomor = "";
 var nrp = 7410040022;
 
@@ -11,7 +12,7 @@ function user() {
 
     $.ajax(
             {
-                url: "http://localhost/webservice/index.php/api/controllers_mahasiswa/mahasiswa/format/json",
+                url: "../webservice/index.php/api/controllers_mahasiswa/mahasiswa/format/json",
                 type: "POST",
                 cache: false,
                 async: false,
@@ -52,11 +53,12 @@ function user() {
 
 //menu arsip pengumuman
 function arsip() {
+
     var tahun = $("#tahun").val();
     var bulan = $("#bulan").val();
     $.ajax(
             {
-                url: "http://localhost/webservice/index.php/api/controllers_arsip/arsip/format/json",
+                url: "../webservice/index.php/api/controllers_arsip/arsip/format/json",
                 type: "POST",
                 data: {
                     thn: tahun,
@@ -65,20 +67,12 @@ function arsip() {
                 success: function(json) {
                     console.log(json);
                     console.log("json");
-
+                    $('#arsip').html("");
                     $.each(json.arsip, function(index, value) {
-                        //  $('#arsip').collapsible();
                         $('#arsip').append("<div data-role='collapsible' data-collapsed-icon='carat-d' data-expanded-icon='carat-u'><h5 style='white-space:normal'>" + this['JUDUL'] + "</h5><p> dari :" + this['NAMA'] + "</p><p>tanggal :" + this['DIUBAH'] + "</p><p> pengumuman :</p><p>" + this['URAIAN'] + "</p></div>");
-                        //$('#arsip').append("</div>");
-                        //$('#arsip').collapsible();
-                        // $('#arsip').trigger("create");
                         $('#arsip').collapsible().trigger('create')
 
-                        // $('div[data-role=collapsible]').collapsible({refresh:true});
                     });
-                    // $('#arsip').collapsible().trigger('create');
-                    // $('#arsip').collapsible();
-                    // $('#arsip').trigger("create");
 
                 }
 
@@ -90,14 +84,16 @@ function arsip() {
 //melihat nilai
 function submit_nilai() {
     var semester = $("#semester").val();
-
+    var tahun = $("#cbsemester").val();
 
     $.ajax(
             {
-                url: "http://localhost/webservice/index.php/api/controllers_nilai/nilai/format/json",
+                url: "../webservice/index.php/api/controllers_nilai/nilai/format/json",
                 type: "POST",
                 data: {
                     smstr: semester,
+                    thn: tahun,
+                    nrp_mahasiswa: nrp,
                 },
                 success: function(json) {
                     //console.log("json");
@@ -119,15 +115,14 @@ function submit_jadwal() {
     var tahun = $("#cbsemester").val();
     $.ajax(
             {
-                url: "http://localhost/webservice/index.php/api/controllers_jadwal/jadwal/format/json",
+                url: "../webservice/index.php/api/controllers_jadwal/jadwal/format/json",
                 type: "POST",
-                data: { 
+                data: {
                     smstr: semester,
                     thn: tahun,
                     nrp_mahasiswa: nrp,
                 },
                 success: function(json) {
-                    //console.log("json");
                     console.log(json);
                     console.log("json");
                     $('#SENIN').html("");
@@ -172,54 +167,128 @@ function submit_jadwal() {
 function absen() {
     var semester = $("#semester").val();
     var tahun = $("#cbsemester").val();
-    console.log(nomor);
+    $('#tableabsensi').html("");
     $.ajax(
             {
-                url: "http://localhost/webservice/index.php/api/controllers_absensi/absen/format/json",
+                url: "../webservice/index.php/api/controllers_jadwal/jadwal/format/json",
                 type: "POST",
+                cache: false,
+                async: false,
                 data: {
                     smstr: semester,
                     thn: tahun,
-                    nomor_mahasiswa: nomor,
+                    nrp_mahasiswa: nrp,
                 },
-                success: function(json) {
-                    console.log(json);
-                    console.log("json");
+                success: function(json1) {
+                    console.log(json1);
+                    $.each(json1.jadwal, function(index, value) {
+                        //mat = json.jadwal[index].MATAKULIAH;
+                        kodematkul = this['KODE'];
 
-                    var matkul = "";
+                        $.ajax(
+                                {
+                                    url: "http://localhost/webservice/index.php/api/controllers_absensi_matkul/absen/format/json",
+                                    type: "POST",
+                                    data: {
+                                        smstr: semester,
+                                        thn: tahun,
+                                        nomor_mahasiswa: nomor,
+                                        kode_matkul: kodematkul,
+                                    },
+                                    success: function(json) {
+
+                                        console.log(json);
+                                        console.log("json");
+                                        var table = $("<tr/>")
+                                        $("#tableabsensi").append(table);
+                                        table.append($("<tr><td>" + json1.jadwal[index].MATAKULIAH + "</td>"));
+                                        if (json.absen.length == 0)
+                                            for (var i = 1; i <= 16; i++) {
+                                                table.append($("<td> - <td>"));
+                                            }
+                                        else {
+
+                                            var j = '0';
+                                            for (var i = 1; i <= 16; i++) {
+                                                if (json.absen[j].MINGGU == i)
+                                                {
+                                                    table.append($("<td>" + json.absen[j].STATUS + "</td>"));
+                                                    j++;
+                                                }
+                                                else {
+                                                    table.append($("<td> - </td>"));
+                                                }
+                                            }
+
+                                        }
 
 
-                    for (var w = 0; w < json.absen.length; w++) {
-                        
-
-                    }
-                }
-            }
-    )
-    $.ajax(
-            {
-                url: "http://localhost/webservice/index.php/api/controllers_jadwal/jadwal/format/json",
-                type: "POST",
-                data: {
-                    smstr: semester,
-                },
-                success: function(json) {
-                    console.log(json);
-                    console.log("json");
-                    var output = "";
-                    $('#tableabsensi').html("");
-
-                    $.each(json.jadwal, function(index, value) {
-                        $('#tableabsensi').append("<tr>");
-                        $('#tableabsensi').append("<td>" + this['MATAKULIAH'] + "</td>");
-                        for (var i = 1; i <= 16; i++) {
-                            $('#tableabsensi').append("<td>-</td>");
-                        }
+                                    },
+                                }
+                        );
                     }
                     );
+
                 }
             }
-    )
-    console.log(hitung);
-
+    );
 }
+
+//set limit menu
+
+function set() {
+    localStorage.removeItem("limit");
+}
+
+//pengumuman page menu
+
+function tambah() {
+    loading = true; //prevent further ajax loading
+    $('.animation_image').show(); //show loading image
+    localStorage.limit = Number(localStorage.limit) + 5;
+
+
+    console.log("Jumlah Record : " + localStorage.limit);
+    pengumuman();
+}
+function pengumuman() {
+    //localStorage.clickcount = 5;
+    if (!localStorage.limit)
+    {
+        localStorage.limit = 5;
+    }
+
+    $.ajax(
+            {
+                url: "../webservice/index.php/api/controllers_pengumuman/pengumuman.json",
+                method: "POST",
+                data: {
+                    limit_row: localStorage.limit,
+                },
+                success: function(json) {
+                    console.log(json);
+                    console.log("json");
+                    $('#row_pengumuman').html("");
+                    loading = true; //prevent further ajax loading
+                    $('.animation_image').hide(); //show loading image
+                    $.each(json.pengumuman, function(index, value) {
+                        $('#row_pengumuman').append("<div style='border: 1px solid #000000; padding: 5px;'><h5 style='white-space:normal'>" + this['JUDUL'] + "</h5><p> dari :" + this['NAMA'] + "</p><p>tanggal :" + this['DIUBAH'] + "</p><p> pengumuman :</p><p>" + this['URAIAN'] + "</p></div><br>");
+                        //$('#row_pengumuman').trigger("create");
+                    });
+
+
+                }
+            }
+    );
+    $(window).scroll(function() {
+        if ($(window).scrollTop() + $(window).height() == $(document).height())  //user scrolled to bottom of the page?
+        {
+            tambah();
+        }
+    }
+    );
+}
+
+
+
+    

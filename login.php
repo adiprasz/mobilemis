@@ -9,7 +9,7 @@
         <script src="include/misonline.js"></script>
         <script src="include/jquery-1.10.2.min.js"></script>
         <script src="include/jquery.mobile-1.4.2.min.js"></script>
-        
+
 
         <script>
             $(document).ready(function() {
@@ -36,15 +36,16 @@
                 });
             });
         </script>
+       
     </head> 
     <body> 
-        <div id="login_page" data-role="page">
-            <div data-role="header" data-theme="c" style="border-style:none"> 
+        <div id="login_page" data-role="page" data-theme="b">
+            <div data-role="header" style="border-style:none"> 
                 <img border="0" src="include/gambar/LOGO1.jpg" alt="mis logo" width="100%" 
                      style="float:left;display:inline-block;position:relative"/> 
 
             </div><!-- /header -->
-            <div data-role="content">
+            <div data-role="content" >
                 <div id='message'>	
                 </div>
                 <form action="login-login.php" id="lg-form" name="lg-form" method="post">
@@ -60,13 +61,16 @@
                     </div>
 
                     <div>				
-                        <button class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext=""  data-theme="a" type="submit" class="button" id="login">Login</button>
+                        <button class="show-page-loading-msg" data-textonly="false" data-textvisible="true" data-msgtext=""type="submit" class="button" id="login">Login</button>
                     </div>
 
                 </form>
             </div><!-- /content -->
+            <div data-role="footer" data-position="fixed">
+                <span class="ui-title"></span>
+            </div>
+        </div>
 
-
-            <!-- /page -->
+        <!-- /page -->
     </body>
 </html>

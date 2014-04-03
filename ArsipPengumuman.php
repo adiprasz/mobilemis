@@ -4,9 +4,9 @@
     <head> 
         <title>MIS EEPIS</title> 
 
-        <meta name="viewport" content="width=device-width,initial-scale=0.5,maximum-scale=0.5" />
-        <link rel="stylesheet" href="include/jquery.mobile-1.4.2.min.css" />
-        <link rel="stylesheet" href="include/themes/tema-custom.min.css" />
+       <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <link rel="stylesheet" href="include/jquery.mobile-1.4.2.css" />
+        <link rel="stylesheet" href="include/themes/tema-custom.css" />
         <script src="include/misonline.js"></script>
         <script src="include/jquery-1.10.2.min.js"></script>
         <script src="include/jquery.mobile-1.4.2.min.js"></script>
@@ -20,9 +20,6 @@
                     $('#bulan').prop('disabled', 'disabled');
                 }
             };
-
-
-
         </script>
        
         <style>
@@ -31,11 +28,11 @@ h3 { white-space:normal; word-break:break-all; }
 
     </head> 
     <body> 
-        <div data-role="page">
+        <div data-role="page" data-theme="b">
 
-            <div data-role="header" data-position="fixed" data-theme="d"> 
+            <div data-role="header" data-position="fixed" data-theme="e"> 
                 <h1>Pengumuman</h1>
-                <a href="#" data-icon="back" data-rel="back" title="go back" class="ui-btn-left">Back</a>
+                <a href="menu.php" rel="external" data-icon="back" title="go back" class="ui-btn-left" onclick="set()">Back</a>
             </div><!-- /header -->
             <div class="ui-content" data-role="content">	
                 <div data-role="content">		
@@ -73,12 +70,14 @@ h3 { white-space:normal; word-break:break-all; }
 
             </div>
             <div data-role="content" data-native-menu="false">
+                <div id="arsip1">
                 <div data-role="collapsible-set" id="arsip" data-theme="b">
 
 
 
 
 
+                </div>
                 </div>
 
             </div><!-- /content -->

@@ -3,14 +3,12 @@
     <head> 
         <title>MIS EEPIS</title> 
         <meta name="viewport" content="width=device-width, initial-scale=1"> 
-        <link rel="stylesheet" href="include/jquery.mobile-1.3.2.min.css"/>
-        <link rel="stylesheet" href="include/themes/tema.css"/>
-        <link rel="stylesheet" href="include/style.css"/>
+        <link rel="stylesheet" href="include/jquery.mobile-1.4.2.css" />
+        <link rel="stylesheet" href="include/table.css"/>
+        <link rel="stylesheet" href="include/themes/tema-custom.css" />
+        <script src="include/misonline.js"></script>
         <script src="include/jquery-1.10.2.min.js"></script>
-        <script src="include/jquery.mobile-1.3.2.min.js"></script>
-        <?php
-        include 'daftar-json.php';
-        ?>
+        <script src="include/jquery.mobile-1.4.2.min.js"></script>
     </head> 
     <body> 
 
@@ -21,26 +19,30 @@
                 <a href="#" data-icon="arrow-l" data-rel="back" title="go back" class="ui-btn-left">Back</a>
             </div><!-- /header -->
             <div class="ui-content" data-role="content">			
-                <table border="0" align="left">
+               <table border="0" align="left">
                     <tr>
-                        <td><span>semester</span></td><td>:</td>
-                        <td><select id="semester" name="semester" data-mini="true" data-native-menu=false  onchange="javascript:submit_daftar()">
-                                <option selected="selected"></option>
-                                <option value=1>1</option>
-                                <option value=2>2</option>
-                                <option value=3>3</option>
-                                <option value=4>4</option>
-                                <option value=5>5</option>
-                                <option value=6>6</option>
-                                <option value=7>7</option>
-                            </select></td>
+                        <td><span>Tahun Ajaran</span></td><td>:</td>
+                        <td>
+                            <select id="cbsemester" name='cbsemester' data-mini='true' data-native-menu="false"  onchange='javascript:submit_daftar()'>
+
+                            </select>
+                        </td>
                     </tr>
-                    
+                    <tr>
+                        <td><span>Semester</span></td><td>:</td>
+                        <td>    
+                            <select id="semester" name='semester' data-mini='true' data-native-menu="false"  onchange='javascript:submit_daftar()'>
+                                <option></option>
+                                <option id='ganjil' value='1'>Ganjil</option>
+                                <option id='genap' value='2'>Genap</option>
+                            </select>
+                        </td>
+                    </tr>
                 </table>
-                
+
             </div><!-- /content -->
-<br>
-                <h1>
+            <br>
+            <h1>
                 <div id="respone"></div></h1>
         </div>
         <!-- /page -->

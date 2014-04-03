@@ -9,41 +9,47 @@
         <script src="include/misonline.js"></script>
         <script src="include/jquery-1.10.2.min.js"></script>
         <script src="include/jquery.mobile-1.4.2.min.js"></script>
+      
     </head> 
-    <body> 
+    <body onload="user()"> 
 
-        <div data-role="page" >
-
-            <div data-role="header" data-position="fixed"> 
-                <h1>Nilai</h1>
-                <a href="#" data-icon="arrow-l" data-rel="back" title="go back" class="ui-btn-left">Back</a>
+        <div data-role="page" data-theme="b">
+            <div data-role="header" data-position="fixed" data-theme="c"> 
+                <div class="ui-title"><img border="0"  src="include/gambar/penslogo.png" alt="Logo" style="float:center;display:inline"/>
+                <span>NILAI</span></div>
+                <a href="menu.php" rel="external" data-icon="back" title="go back" class="ui-btn-left" onclick="set()">Back</a>
             </div><!-- /header -->
             <div class="ui-content" data-role="content">			
                 <table border="0" align="left">
                     <tr>
-                        <td><span>semester</span></td><td>:</td>
-                        <td><select id="semester" name="semester"  data-native-menu=false  onchange="javascript:submit_nilai()">
-                                <option selected="selected" data-mini="true"></option>
-                                <option value=1 data-mini="true">1</option>
-                                <option value=2 data-mini="true">2</option>
-                                <option value=3 data-mini="true">3</option>
-                                <option value=4 data-mini="true">4</option>
-                                <option value=5 data-mini="true">5</option>
-                                <option value=6 data-mini="true">6</option>
-                                <option value=7 data-mini="true">7</option>
-                                <option value=8 data-mini="true">8</option>
-                            </select></td>
+                        <td><span>Tahun Ajaran</span></td><td>:</td>
+                        <td>
+                            <select id="cbsemester" name='cbsemester' data-mini='true' data-native-menu="false"  onchange='javascript:submit_nilai()'>
+
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><span>Semester</span></td><td>:</td>
+                        <td>
+                            <select id="semester" name='semester' data-mini='true' data-native-menu="false"  onchange='javascript:submit_nilai()'>
+                                <option></option>
+                                <option id='ganjil' value='1'>Ganjil</option>
+                                <option id='genap' value='2'>Genap</option>
+                            </select>
+                        </td>
                     </tr>
                 </table>
                 <br>
-
-                <table align='center' data-role="tabel" id='box-table-a' class="ui-responsive">
-                    <caption><h1>Table Nilai Mahasiswa Per Semester</h1></caption>
-                    <thead><tr><th rowspan="2">Kode MK</th><th rowspan="2">Mata kuliah</th><th>Nilai Utama</th></tr></thead><tbody id='nilai_semester'></tbody></table>
+                <div class="mdgov_OverflowTable">
+                    <table align='center' data-role="tabel" id='box-table-a' class="ui-responsive table-stripe">
+                        <caption><h1>Table Nilai Mahasiswa Per Semester</h1></caption>
+                        <thead><tr><th rowspan="2" scope="col">Kode MK</th><th rowspan="2" scope="col">Mata kuliah</th><th scope="col">Nilai Utama</th></tr></thead><tbody id='nilai_semester'></tbody></table>
+                </div>
             </div><!-- /content -->
 
         </div>
         <!-- /page -->
-        <div class="panel left" data-role="panel" data-position="left" data-dis></div>
-</body>
+       
+    </body>
 </html>
