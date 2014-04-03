@@ -42,7 +42,7 @@ function user() {
 
     $.ajax(
             {
-                url: "../webservice/index.php/api/controllers_mahasiswa/mahasiswa/format/json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_mahasiswa/mahasiswa/format/json",
                 type: "POST",
                 cache: false,
                 async: false,
@@ -96,7 +96,7 @@ function arsip() {
     var bulan = $("#bulan").val();
     $.ajax(
             {
-                url: "../webservice/index.php/api/controllers_arsip/arsip/format/json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_arsip/arsip/format/json",
                 type: "POST",
                 data: {
                     thn: tahun,
@@ -128,7 +128,7 @@ function submit_nilai() {
 
     $.ajax(
             {
-                url: "../webservice/index.php/api/controllers_nilai/nilai/format/json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_nilai/nilai/format/json",
                 type: "POST",
                 data: {
                     smstr: semester,
@@ -155,7 +155,7 @@ function submit_jadwal() {
     var tahun = $("#cbsemester_jadwal").val();
     $.ajax(
             {
-                url: "../webservice/index.php/api/controllers_jadwal/jadwal/format/json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_jadwal/jadwal/format/json",
                 type: "POST",
                 data: {
                     smstr: semester,
@@ -210,7 +210,7 @@ function absen() {
     $('#tableabsensi').html("");
     $.ajax(
             {
-                url: "../webservice/index.php/api/controllers_jadwal/jadwal/format/json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_jadwal/jadwal/format/json",
                 type: "POST",
                 cache: false,
                 async: false,
@@ -227,7 +227,7 @@ function absen() {
 
                         $.ajax(
                                 {
-                                    url: "http://localhost/webservice/index.php/api/controllers_absensi_matkul/absen/format/json",
+                                    url: "http://192.168.179.1/webservice/index.php/api/controllers_absensi_matkul/absen/format/json",
                                     type: "POST",
                                     data: {
                                         smstr: semester,
@@ -306,7 +306,7 @@ function pengumuman() {
     }
     $.ajax(
             {
-                url: "../webservice/index.php/api/controllers_pengumuman/pengumuman.json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_pengumuman/pengumuman.json",
                 method: "POST",
                 data: {
                     limit_row: localStorage.limit,
@@ -362,7 +362,7 @@ function submit_daftar() {
 
     $.ajax(
             {
-                url: "http://localhost/webservice/index.php/api/controllers_daftar/daftar/format/json",
+                url: "http://192.168.179.1/webservice/index.php/api/controllers_daftar/daftar/format/json",
                 type: "POST",
                 data: {
                     smstr: semester,
